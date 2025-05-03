@@ -1,0 +1,4 @@
+Green - very well
+Yellow - not bad
+Orange - under normal
+Red - bad
