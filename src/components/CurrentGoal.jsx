@@ -18,7 +18,7 @@ export const CurrentGoal = ({ show }) => {
     <main
       className={`${
         show ? "top-[45%] opacity-100 visible" : "top-1/2 opacity-0 invisible"
-      } fixed z-20 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-5 px-14 py-5 pb-10 rounded-md bg-white shadow-2xl duration-300`}
+      } fixed z-20 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-5 px-14 py-5 pb-10 rounded-md bg-white shadow-2xl mx-1 duration-300`}
     >
       <h1 className="text-2xl font-bold leading-7 text-center">
         Set how much left now for the goal?
@@ -27,7 +27,7 @@ export const CurrentGoal = ({ show }) => {
         <input
           ref={goalRef}
           type="number"
-          className="focus:outline-none rounded-sm border border-gray-400 px-2 w-max"
+          className="focus:outline-none rounded-sm border border-gray-400 px-2 w-auto sm:w-full"
         />
         <button
           type="submit"

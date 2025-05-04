@@ -15,3 +15,11 @@
 ::-webkit-scrollbar-track {
   background: #fff;
 }
+
+.Toastify__toast {
+  font-size: 14px;
+}
+
+.Toastify__progress-bar {
+  background: #2563eb;
+}
