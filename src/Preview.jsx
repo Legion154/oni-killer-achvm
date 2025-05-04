@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { EveryDay } from "./components/EveryDay";
 import { GlobalContext } from "../GlobalProvider";
+import { CurrentGoal } from "./components/CurrentGoal";
+import Congratulations from "./components/Congratulations";
 
 const Preview = () => {
-  const { mainGoal } = useContext(GlobalContext);
+  const { mainGoal, goalNotExist, goalAchieved } = useContext(GlobalContext);
   const [missions, setMissions] = useState([]);
 
   const addMission = () => {
@@ -22,6 +24,8 @@ const Preview = () => {
 
   return (
     <main className="p-1">
+      <CurrentGoal show={goalNotExist} />
+      <Congratulations completed={goalAchieved} />
       <div className="flex flex-row itemc-center justify-end gap-2 font-medium">
         <span className="font-bold text-red-500">{mainGoal}</span>
         <h1>left for the goal</h1>
@@ -48,6 +52,14 @@ const Preview = () => {
       >
         <i className="fa-solid fa-plus text-zinc-600"></i>
       </button>
+
+      {/* overlay */}
+
+      <div
+        className={`${
+          goalNotExist || goalAchieved ? "block" : "hidden"
+        } inset-0 fixed z-0 bg-black bg-opacity-50 backdrop-blur-md`}
+      ></div>
     </main>
   );
 };

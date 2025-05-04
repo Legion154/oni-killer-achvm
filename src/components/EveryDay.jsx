@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../GlobalProvider";
 
 export const EveryDay = ({ day }) => {
-  const { mainGoal, setMainGoal } = useContext(GlobalContext);
+  const { mainGoal, setMainGoal, setGoalAchieved } = useContext(GlobalContext);
   const [dayEnd, setDayEnd] = useState(false);
   const [wonCount, setWonCount] = useState(0);
   const wonRef = useRef(null);
@@ -14,9 +14,16 @@ export const EveryDay = ({ day }) => {
 
     localStorage.setItem(`day-${day}`, "true");
     localStorage.setItem(`won-${day}`, value);
-    localStorage.setItem("goal", result);
 
-    setMainGoal((prev) => prev - value);
+    if (mainGoal - value < 0) {
+      localStorage.setItem("goal", 0);
+      setMainGoal(0);
+      setGoalAchieved(true);
+    } else {
+      localStorage.setItem("goal", result);
+      setMainGoal((prev) => prev - value);
+    }
+
     setWonCount(value);
     setDayEnd(true);
   };
@@ -65,7 +72,7 @@ export const EveryDay = ({ day }) => {
             dayEnd
               ? "bg-black bg-opacity-0 border-none"
               : "bg-inherit bg-opacity-100 border border-gray-400"
-          } focus:outline-none w-9 pl-1`}
+          } focus:outline-none w-10 pl-1`}
           min={0}
           defaultValue={0}
         />
